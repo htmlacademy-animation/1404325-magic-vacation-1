@@ -10430,15 +10430,9 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = (() => {
-  function onload() {
+  window.onload = () => {
     document.body.classList.add(`body--loaded`);
-  }
-
-  if (document.readyState === `loading`) {
-    document.addEventListener(`DOMContentLoaded`, onload);
-  } else {
-    onload();
-  }
+  };
 });
 
 
