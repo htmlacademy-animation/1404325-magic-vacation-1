@@ -70,6 +70,7 @@
     }
   }
 
+  .social-block--active &:not(:hover),
   &:active,
   &:active:focus {
     color: $c-light;
@@ -164,8 +165,10 @@
   @for $i from 1 through 3 {
     .social-block--active & li:nth-child(#{$i}) .social-block__link,
     .page-header--menu-opened & li:nth-child(#{$i}) .social-block__link {
-      transition: all 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
-      transition-delay: 0ms, (100ms * $i), (100ms * $i);
+      transition-property: opacity, transform, color, border-color, background;
+      transition-delay: (100ms * $i), (100ms * $i), 0s, 0s, 0s;
+      transition-duration: 0.35s;
+      transition-timing-function: ease;
     }
   }
 }

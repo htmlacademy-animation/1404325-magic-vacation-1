@@ -38,7 +38,7 @@
     &.swiper-slide-next {
       .slider__item-text {
         opacity: 0;
-        transform: translateX(50px);
+        transform: translateX(5rem);
       }
     }
   }
@@ -54,7 +54,7 @@
 
       .slider__item-text {
         opacity: 0;
-        transform: translateX(50px);
+        transform: translateX(5rem);
       }
     }
   }
@@ -121,7 +121,7 @@
   font-size: 1.8rem;
   line-height: 2rem;
   opacity: 0;
-  transform: translateX(50px);
+  transform: translateX(5rem);
   transition: all 0.35s ease;
   transition-delay: 100ms;
 
