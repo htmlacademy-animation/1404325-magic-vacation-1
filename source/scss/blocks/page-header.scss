@@ -35,23 +35,11 @@
   padding: 1rem 0;
   width: 10rem;
   color: $c-light;
-  visibility: hidden;
-  opacity: 0;
-  transform: translateX(-2rem);
-  transition: all 0.35s $ultra-ease-out 300ms;
-
-  .body--loaded & {
-    visibility: visible;
-    opacity: 1;
-    transform: translateX(0);
-  }
-
 
   @media (min-width: $stop-scaling) {
     top: -5px;
     padding: 10px 0;
     width: 113px;
-    transform: translateX(-20px);
   }
 
   @media (max-width: $tablet) and (orientation: portrait) {
@@ -93,15 +81,6 @@
   background-color: $c-light;
   border-radius: 50%;
   z-index: 1;
-
-  visibility: hidden;
-  opacity: 0;
-  transition: opacity 0.35s $ultra-ease-out 0.4s;
-
-  .body--loaded & {
-    visibility: visible;
-    opacity: 1;
-  }
 
   @media (max-width: $tablet) and (orientation: portrait) {
     display: block;
@@ -151,15 +130,6 @@
 .page-header__nav {
   display: flex;
   align-items: center;
-
-  visibility: hidden;
-  opacity: 0;
-  transition: opacity 0.35s $ultra-ease-out 0.4s;
-
-  .body--loaded & {
-    visibility: visible;
-    opacity: 1;
-  }
 
   @media (max-width: $tablet) and (orientation: portrait) {
     position: fixed;
@@ -276,16 +246,11 @@
       content: "";
       position: absolute;
       bottom: 0;
-      width: 0;
+      width: 100%;
       height: 2px;
       background-color: $c-light;
-      right: 0;
-      transition: all 0.35s ease;
-
-      @media (min-width: $stop-scaling) {
-        left: -5px;
-        right: -5px;
-      }
+      display: none;
+      left: 0;
 
       @media (max-width: $tablet) and (orientation: portrait) {
         left: 0;
@@ -302,8 +267,7 @@
 
     &.active {
       &::after {
-        left: 0;
-        width: 100%;
+        display: block;
       }
     }
 
@@ -315,8 +279,6 @@
       &::after {
         opacity: 1;
         background-color: $c-purple;
-        left: 0;
-        width: 100%;
       }
     }
   }
