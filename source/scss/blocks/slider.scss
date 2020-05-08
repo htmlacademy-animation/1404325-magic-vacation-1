@@ -5,6 +5,7 @@
 
   .swiper-wrapper {
     min-height: 100vh;
+    box-sizing: border-box;
 
     @media (max-width: $tablet) and (orientation: portrait) {
       min-height: calc(var(--vh, 1vh) * 100);
@@ -18,14 +19,6 @@
   padding: 14.6rem 4rem 10rem 9.7rem;
   height: auto;
 
-  &.swiper-slide-active,
-  &.swiper-slide-next {
-    .slider__item-text {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
-
   @media (min-width: $stop-scaling) {
     padding: 146px 40px 100px 97px;
   }
@@ -34,13 +27,6 @@
     display: flex;
     flex-direction: column;
     padding: 6rem 1rem 3.5rem 3.5rem;
-
-    &.swiper-slide-next {
-      .slider__item-text {
-        opacity: 0;
-        transform: translateX(5rem);
-      }
-    }
   }
 
   @media (max-width: $mobile) and (orientation: landscape) {
@@ -48,21 +34,11 @@
     display: flex;
     flex-direction: column;
     padding: 5rem 2rem 0 5rem;
-
-    &.swiper-slide-next {
-      background: red;
-
-      .slider__item-text {
-        opacity: 0;
-        transform: translateX(5rem);
-      }
-    }
   }
 
   &:nth-child(even) {
     .slider__item-text {
       align-self: flex-end;
-      transition-delay: 300ms;
 
       @media (max-width: $mobile) and (orientation: landscape) {
         align-self: flex-start;
@@ -120,10 +96,6 @@
   max-width: 34rem;
   font-size: 1.8rem;
   line-height: 2rem;
-  opacity: 0;
-  transform: translateX(5rem);
-  transition: all 0.35s ease;
-  transition-delay: 100ms;
 
   @media (min-width: $stop-scaling) {
     margin-top: 36px;
