@@ -10285,28 +10285,30 @@ class FullPageScroll {
     this.menuElements = document.querySelectorAll(`.page-header__menu .js-menu-link`);
 
     this.activeScreen = 0;
+    this.previousScreen = -1;
     this.onScrollHandler = this.onScroll.bind(this);
-    this.onUrlHashChengedHandler = this.onUrlHashChenged.bind(this);
+    this.onUrlHashChengedHandler = this.onUrlHashChanged.bind(this);
   }
 
   init() {
-    document.addEventListener(`wheel`, lodash_throttle__WEBPACK_IMPORTED_MODULE_0___default()(this.onScrollHandler, this.THROTTLE_TIMEOUT));
+    document.addEventListener(`wheel`, lodash_throttle__WEBPACK_IMPORTED_MODULE_0___default()(this.onScrollHandler, this.THROTTLE_TIMEOUT, {trailing: false}));
     window.addEventListener(`popstate`, this.onUrlHashChengedHandler);
 
-    this.onUrlHashChenged();
-    this.changePageDisplay();
+    this.onUrlHashChanged();
   }
 
   onScroll(evt) {
     const currentPosition = this.activeScreen;
     this.reCalculateActiveScreenPosition(evt.deltaY);
     if (currentPosition !== this.activeScreen) {
+      this.previousScreen = currentPosition;
       this.changePageDisplay();
     }
   }
 
-  onUrlHashChenged() {
+  onUrlHashChanged() {
     const newIndex = Array.from(this.screenElements).findIndex((screen) => location.hash.slice(1) === screen.id);
+    this.previousScreen = this.activeScreen;
     this.activeScreen = (newIndex < 0) ? 0 : newIndex;
     this.changePageDisplay();
   }
@@ -10321,9 +10323,13 @@ class FullPageScroll {
     this.screenElements.forEach((screen) => {
       screen.classList.add(`screen--hidden`);
       screen.classList.remove(`active`);
+      screen.classList.remove(`screen--previous`);
     });
     this.screenElements[this.activeScreen].classList.remove(`screen--hidden`);
     this.screenElements[this.activeScreen].classList.add(`active`);
+    if (this.activeScreen !== this.previousScreen) {
+      this.screenElements[this.previousScreen].classList.add(`screen--previous`);
+    }
   }
 
   changeActiveMenuItem() {
