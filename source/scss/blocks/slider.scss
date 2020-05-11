@@ -19,11 +19,27 @@
   padding: 14.6rem 4rem 10rem 9.7rem;
   height: auto;
 
-  &.swiper-slide-active,
-  &.swiper-slide-next {
-    .slider__item-text {
-      opacity: 1;
-      transform: translateX(0);
+  .screen.active & {
+    &.swiper-slide-active,
+    &.swiper-slide-next {
+      .slider__item-text {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+  }
+
+  .screen--previous & {
+    &.swiper-slide-active {
+      .slider__item-text {
+        animation: removeLeftSlide 0.5s;
+      }
+    }
+
+    &.swiper-slide-next {
+      .slider__item-text {
+        animation: removeRightSlide 0.5s;
+      }
     }
   }
 
@@ -156,11 +172,15 @@
   position: absolute;
   bottom: 2.8rem;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translate3d(-50%, 0, 0);
   display: flex;
   justify-content: space-between;
   width: 17rem;
   z-index: 1;
+
+  .screen--previous & {
+    animation: removeControls 0.5s;
+  }
 
   @media (min-width: $stop-scaling) {
     bottom: 28px;
@@ -252,7 +272,7 @@
   position: absolute;
   bottom: 2.8rem;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translate3d(-50%, 0, 0);
   width: 9rem;
   height: 4rem;
   text-align: center;
@@ -260,6 +280,10 @@
   font-weight: 400;
   font-size: 2.4rem;
   line-height: 4rem;
+
+  .screen--previous & {
+    animation: removeControls 1s;
+  }
 
   @media (min-width: $stop-scaling) {
     bottom: 28px;
@@ -301,5 +325,56 @@
       height: 0.4rem;
       background-color: $c-light;
     }
+  }
+}
+
+@keyframes removeLeftSlide {
+  0% {
+    opacity: 1;
+    transform: translate(0);
+  }
+
+  80% {
+    opacity: 0;
+    transform: translate(3rem, 2rem);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(3rem, 2rem);
+  }
+}
+
+@keyframes removeRightSlide {
+  0% {
+    opacity: 1;
+    transform: translate(0);
+  }
+
+  80% {
+    opacity: 0;
+    transform: translate(-3rem, 2rem);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-3rem, 2rem);
+  }
+}
+
+@keyframes removeControls {
+  0% {
+    opacity: 1;
+    transform: translate3d(-50%, 0, 0);
+  }
+
+  30% {
+    opacity: 0;
+    transform: translate3d(-50%, -2rem, 0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate3d(-50%, -2rem, 0);
   }
 }
