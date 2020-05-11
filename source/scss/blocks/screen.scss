@@ -1,13 +1,26 @@
 .screen {
-  position: relative;
+  position: absolute;
+  width: 100%;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
   z-index: 1;
   overflow: hidden;
 
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    transform: scale3d(1, 0, 1);
+    background: $c-dark;
+  }
+
   &--hidden {
-    display: none;
+    visibility: hidden;
+    opacity: 0;
   }
 
   @media (max-width: $tablet) and (orientation: portrait) {
@@ -303,6 +316,11 @@
   background-size: cover;
   background-position: center;
 
+  .screen:not(.active) + &.screen--previous {
+    transition-property: opacity, visibility;
+    transition-delay: 1s;
+  }
+
   @media (orientation: portrait) {
     background-size: auto calc(100vh - 13.8rem), 100% 25rem;
     background-position: top center, bottom center;
@@ -310,7 +328,42 @@
 }
 
 .screen--prizes {
-  background-color: $c-dark;
+  .screen__wrapper {
+    //@TODO remove when add screen-prize content animations
+    opacity: 0;
+  }
+
+  .screen__footer {
+    transform: translateY(100%);
+  }
+
+  &.active {
+    &::before {
+      transition: transform 0.5s ease-out;
+      transform-origin: bottom;
+      transform: scale3d(1, 1, 1);
+    }
+
+    .screen__wrapper {
+      //@TODO remove when add screen-prize content animations
+      transition: opacity 0.35s ease 0.8s;
+      opacity: 1;
+    }
+
+    .screen__footer {
+      transform: translateY(0);
+    }
+  }
+
+  .screen--previous + &.active {
+    &::before {
+      transition-delay: 300ms;
+    }
+
+    .screen__footer {
+      transition-delay: 450ms;
+    }
+  }
 }
 
 .screen--game {

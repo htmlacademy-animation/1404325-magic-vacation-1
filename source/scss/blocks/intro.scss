@@ -93,7 +93,14 @@
   text-transform: uppercase;
   font-size: 2.4rem;
   line-height: 1.27;
-  animation: fadeInTop 0.4s backwards 1.2s;
+  opacity: 0;
+  transform: translateY(5rem);
+
+  .screen--intro.active & {
+    transition: all 0.4s ease 1.2s;
+    opacity: 1;
+    transform: translateY(0);
+  }
 
   @media (min-width: $stop-scaling) {
     width: 509px;
@@ -161,17 +168,5 @@
   @media (min-width: $stop-scaling) {
     margin: 0 0 0 -5px;
     font-size: 48px;
-  }
-}
-
-@keyframes fadeInTop {
-  from {
-    opacity: 0;
-    transform: translateY(5rem);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
   }
 }
