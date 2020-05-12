@@ -8,6 +8,7 @@ import result from './modules/result.js';
 import form from './modules/form.js';
 import social from './modules/social.js';
 import onload from './modules/onload.js';
+import rules from './modules/rules';
 import FullPageScroll from './modules/full-page-scroll';
 
 // init modules
@@ -20,6 +21,7 @@ result();
 form();
 social();
 onload();
+rules();
 
 const fullPageScroll = new FullPageScroll();
 fullPageScroll.init();
