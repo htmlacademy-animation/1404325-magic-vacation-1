@@ -203,6 +203,24 @@
   height: 4rem;
   color: $c-dark;
 
+  .screen.active & {
+    &--prev {
+      animation: controlsOpacityIn 0.35s backwards 500ms,
+        controlsColorIn 0.35s backwards 500ms,
+        leftControlIn 0.5s cubic-bezier(0.17, 0.67, 0.86, 1.32) backwards 500ms;
+      animation-direction: normal;
+      animation-play-state: running;
+    }
+
+    &--next {
+      animation: controlsOpacityIn 0.35s backwards 500ms,
+        controlsColorIn 0.35s backwards 500ms,
+        rightControlIn 0.5s cubic-bezier(0.17, 0.67, 0.86, 1.32) backwards 500ms;
+      animation-direction: normal;
+      animation-play-state: running;
+    }
+  }
+
   @media (min-width: $stop-scaling) {
     width: 40px;
     height: 40px;
@@ -280,6 +298,10 @@
   font-weight: 400;
   font-size: 2.4rem;
   line-height: 4rem;
+
+  .screen.active & {
+    animation: controlsOpacityIn 0.35s backwards 500ms;
+  }
 
   .screen--previous & {
     animation: removeControls 1s;
@@ -376,5 +398,45 @@
   100% {
     opacity: 0;
     transform: translate3d(-50%, -2rem, 0);
+  }
+}
+
+@keyframes controlsOpacityIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes controlsColorIn {
+  from {
+    color: transparent;
+  }
+
+  to {
+    color: $c-dark;
+  }
+}
+
+@keyframes leftControlIn {
+  from {
+    transform: translateX(-150%) rotate(-180deg);
+  }
+
+  to {
+    transform: translateX(0) rotate(0);
+  }
+}
+
+@keyframes rightControlIn {
+  from {
+    transform: translateX(150%) rotate(180deg);
+  }
+
+  to {
+    transform: translateX(0) rotate(0);
   }
 }
