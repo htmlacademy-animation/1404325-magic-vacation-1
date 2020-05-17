@@ -1,0 +1,29 @@
+.text-animation {
+  &__word {
+    position: relative;
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+
+    // фикс обрезания текста по вертикали
+    top: -0.2em;
+    padding-top: 0.2em;
+    margin-bottom: -0.2em;
+
+    // фикс обрезания текста по горизонтали
+    right: -0.1em;
+    padding-right: 0.1em;
+    margin-left: -0.1em;
+  }
+
+  &__letter {
+    display: inline-block;
+    transform: translate3d(0, 1.1em, 0);
+  }
+
+  &.text-animation--active {
+    .text-animation__letter {
+      transform: translate3d(0, 0, 0);
+    }
+  }
+}
